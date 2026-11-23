@@ -1,0 +1,93 @@
+{
+  "name": "ai-code-studio",
+  "displayName": "AI Code Studio",
+  "description": "Connect VS Code to your AI Code Studio: build websites and write HTML, CSS and JavaScript non-stop, straight into your editor.",
+  "version": "0.1.0",
+  "publisher": "local-dev",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiStudio.testConnection",
+        "title": "AI Studio: Test Connection"
+      },
+      {
+        "command": "aiStudio.buildWebsite",
+        "title": "AI Studio: Build Website from Prompt"
+      },
+      {
+        "command": "aiStudio.startWriter",
+        "title": "AI Studio: Start Non-stop Writer in Active File"
+      },
+      {
+        "command": "aiStudio.startWriterAll",
+        "title": "AI Studio: Start Non-stop Writer for HTML + CSS + JS"
+      },
+      {
+        "command": "aiStudio.stopWriter",
+        "title": "AI Studio: Stop Writer"
+      },
+      {
+        "command": "aiStudio.openWebStudio",
+        "title": "AI Studio: Open Web Studio in Browser"
+      }
+    ],
+    "configuration": {
+      "title": "AI Studio",
+      "properties": {
+        "aiStudio.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:3000",
+          "description": "Base URL of your running AI Code Studio app (for example http://localhost:3000 or your hosted preview URL)."
+        },
+        "aiStudio.burstLines": {
+          "type": "number",
+          "default": 200,
+          "minimum": 10,
+          "maximum": 1000,
+          "description": "Lines the AI writes in each burst."
+        },
+        "aiStudio.deletePercent": {
+          "type": "number",
+          "default": 50,
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percentage of each burst that is deleted before the writer continues."
+        },
+        "aiStudio.delayMs": {
+          "type": "number",
+          "default": 30,
+          "minimum": 0,
+          "maximum": 500,
+          "description": "Delay in milliseconds between written lines, so you can watch the code appear."
+        },
+        "aiStudio.maxLines": {
+          "type": "number",
+          "default": 1200,
+          "minimum": 50,
+          "maximum": 20000,
+          "description": "The writer keeps at most this many lines in the file by trimming the top."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "npx --yes @vscode/vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.4.0"
+  }
+}
